@@ -91,7 +91,7 @@ int main() {
             sleep_ms(200);  // Delay para evitar múltiplos decrementos rápidos (debouncing)
         }
         
-        sleep_ms(50);  // Delay de estabilização para o loop principal
+        sleep_ms(50);  // Delay de estabilização para o loop principal.
     }
 
     return 0;
