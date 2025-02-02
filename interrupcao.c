@@ -3,7 +3,7 @@
 #include "hardware/pio.h"
 #include "hardware/gpio.h"
 #include "hardware/clocks.h"
-#include "TarefaAnimacao.pio.h"
+#include "interrupcao.pio.h"
 
 // Definições dos pinos e número de pixels
 #define NUM_PIXELS 25  // Número de LEDs na matriz
@@ -64,9 +64,9 @@ int main() {
     
     // Inicializa o PIO para controlar os LEDs WS2812
     PIO pio = pio0;
-    uint offset = pio_add_program(pio, &TarefaAnimacao_program);
+    uint offset = pio_add_program(pio, &interrupcao_program);
     uint sm = pio_claim_unused_sm(pio, true);
-    TarefaAnimacao_program_init(pio, sm, offset, OUT_PIN);
+    interrupcao_program_init(pio, sm, offset, OUT_PIN);
     
     int contador = 0;  // Variável para controlar o número exibido na matriz
     bool estado_led = false;  // Estado do LED vermelho (alternando a cada ciclo)
@@ -91,7 +91,7 @@ int main() {
             sleep_ms(200);  // Delay para evitar múltiplos decrementos rápidos (debouncing)
         }
         
-        sleep_ms(50);  // Delay de estabilização para o loop principal
+        sleep_ms(50);  // Delay de estabilização para o loop principal.
     }
 
     return 0;

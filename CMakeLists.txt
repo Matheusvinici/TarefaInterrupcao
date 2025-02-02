@@ -24,34 +24,34 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(PICO_BOARD pico_w CACHE STRING "Board type")
 include(pico_sdk_import.cmake)
 
-project(TarefaAnimacao C CXX ASM)
+project(interrupcao C CXX ASM)
 
 # Inicializa o SDK do Pico
 pico_sdk_init()
 
 # Adiciona o executável
-add_executable(TarefaAnimacao TarefaAnimacao.c )
+add_executable(interrupcao interrupcao.c )
 
-pico_set_program_name(TarefaAnimacao "TarefaAnimacao")
-pico_set_program_version(TarefaAnimacao "0.1")
+pico_set_program_name(interrupcao "interrupcao")
+pico_set_program_version(interrupcao "0.1")
 
 # Gera o cabeçalho .h a partir do .pio
-pico_generate_pio_header(TarefaAnimacao ${CMAKE_CURRENT_LIST_DIR}/TarefaAnimacao.pio)
+pico_generate_pio_header(interrupcao ${CMAKE_CURRENT_LIST_DIR}/interrupcao.pio)
 
 
 # Ativa a saída padrão via USB
-pico_enable_stdio_uart(TarefaAnimacao 0)
-pico_enable_stdio_usb(TarefaAnimacao 1)
+pico_enable_stdio_uart(interrupcao 0)
+pico_enable_stdio_usb(interrupcao 1)
 
 # Adiciona as bibliotecas padrão e as necessárias
-target_link_libraries(TarefaAnimacao
+target_link_libraries(interrupcao
     pico_stdlib
     hardware_pio
     hardware_adc  # Adicionando a biblioteca do ADC
 )
 
 # Adiciona diretórios de inclusão
-target_include_directories(TarefaAnimacao PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(interrupcao PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 
 # Gera arquivos binários adicionais
-pico_add_extra_outputs(TarefaAnimacao)
+pico_add_extra_outputs(interrupcao)
